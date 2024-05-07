@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import TodoList from "./components/todo-list";
+import { Item } from "./types/item";
 
 function App() {
+  const [items, setItems] = useState<Item[]>([]);
+
+  const addNewItem = (item: Item) => {
+    const updateItems = [...items, item];
+    setItems(updateItems);
+  };
+
+  const updateItemStatus = (item: Item) => {
+    const updatedItems = items.map((todoItem) => {
+      if (todoItem.id === item.id) {
+        return { ...todoItem, checked: !todoItem.checked };
+      }
+      return todoItem;
+    });
+    setItems(updatedItems);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App bg-gray-100 h-screen w-screen">
+      <TodoList
+        items={items}
+        addItem={addNewItem}
+        changeItemStatus={updateItemStatus}
+      />
     </div>
   );
 }
