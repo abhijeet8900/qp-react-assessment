@@ -7,7 +7,7 @@ function App() {
   const [items, setItems] = useState<Item[]>([]);
 
   const addNewItem = (item: Item) => {
-    const updateItems = [...items, item];
+    const updateItems = [item, ...items];
     setItems(updateItems);
   };
 
