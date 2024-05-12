@@ -1,0 +1,34 @@
+.container{ 
+    @apply w-full;
+    @apply h-10;
+    backdrop-filter: blur(14px);
+    background-color: rgba(255, 255, 255, 0.2);
+    @apply text-center;
+    @apply rounded-lg;
+    @apply flex;
+    @apply flex-row;
+}
+
+.input { 
+    min-width: 90%;
+    backdrop-filter: blur(14px);
+    background-color: rgba(255, 255, 255, 0.2);
+    @apply pl-4;
+    @apply rounded-lg;    
+    @apply rounded-r-none;
+}
+
+/* Disable border effect while typing */
+.input:focus, .input:focus-visible, .input:active {
+    @apply border-none;
+    @apply outline-none;
+}  
+
+.button {
+    @apply w-full;
+    @apply bg-gray-900;
+    @apply text-white;
+    @apply text-center;
+    @apply rounded-lg;    
+    @apply rounded-l-none;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./styles.module.css";
 
 type AddTodoProps = {
   onAdd: (text: string) => void;
@@ -20,13 +21,16 @@ const AddTodo: React.FC<AddTodoProps> = ({ onAdd }) => {
   };
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <form className={styles.container} onSubmit={handleSubmit}>
       <input
+        className={styles.input}
         value={title}
         onChange={handleTitleChange}
         placeholder="Add a new todo"
       />
-      <button type="submit">Add</button>
+      <button className={styles.button} type="submit">
+        Add
+      </button>
     </form>
   );
 };
