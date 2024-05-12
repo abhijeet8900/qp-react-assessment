@@ -6,7 +6,7 @@ type Props = { onClick: () => void };
 
 function DeleteTodo({ onClick }: Props) {
   return (
-    <div className={styles.container} onClick={onClick}>
+    <div data-testid="delete-todo"  className={styles.container} onClick={onClick}>
       <DeleteIcon className={styles.icon} />
     </div>
   );

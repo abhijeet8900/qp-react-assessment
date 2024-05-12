@@ -22,38 +22,23 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const addNewItem = (text: string) => {
+  const addTodo = (text: string) => {
     const id = Math.random();
     const newTodo = { id, text: text, checked: false };
     const updateItems = [newTodo, ...todos];
     setTodos(updateItems);
   };
 
-  const updateItemStatus = (item: Item) => {
-    const updatedItems = todos.map((todoItem) => {
-      if (todoItem.id === item.id) {
-        return { ...todoItem, checked: !todoItem.checked };
-      }
-      return todoItem;
-    });
-    setTodos(updatedItems);
-  };
-
-  const deleteItem = (item: Item) => {
-    const updatedItems = todos.filter((todoItem) => todoItem.id !== item.id);
-    setTodos(updatedItems);
+  const updateTodos = (todos: Item[]) => {
+    setTodos(todos);
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header />
-        <TodoList
-          items={todos}
-          removeItem={deleteItem}
-          changeItemStatus={updateItemStatus}
-        />
-        <AddTodo onAdd={addNewItem} />
+        <TodoList updateTodos={updateTodos} items={todos} />
+        <AddTodo onAdd={addTodo} />
       </div>
     </div>
   );

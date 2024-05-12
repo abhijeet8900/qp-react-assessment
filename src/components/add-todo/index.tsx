@@ -21,7 +21,11 @@ const AddTodo: React.FC<AddTodoProps> = ({ onAdd }) => {
   };
 
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
+    <form
+      data-testid="add-todo"
+      className={styles.container}
+      onSubmit={handleSubmit}
+    >
       <input
         className={styles.input}
         value={title}

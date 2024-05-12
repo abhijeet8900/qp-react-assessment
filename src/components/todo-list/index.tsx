@@ -5,27 +5,30 @@ import styles from "./styles.module.css";
 
 type TodoListProps = {
   items: Item[];
-  changeItemStatus: (item: Item) => void;
-  removeItem: (item: Item) => void;
+  updateTodos: (todos: Item[]) => void;
 };
 
-const TodoList: React.FC<TodoListProps> = ({
-  items,
-  changeItemStatus,
-  removeItem,
-}) => {
+const TodoList: React.FC<TodoListProps> = ({ items, updateTodos }) => {
   const markItem = (item: Item) => {
-    changeItemStatus(item);
+    const updatedItems = items.map((todo) => {
+      if (todo.id === item.id) {
+        return { ...todo, checked: !todo.checked };
+      }
+      return todo;
+    });
+    updateTodos(updatedItems);
   };
+
   const onDeleteItem = (item: Item) => {
-    removeItem(item);
+    const updatedTodos = items.filter((todo) => todo.id !== item.id);
+    updateTodos(updatedTodos);
   };
   return (
     <div className={styles.container}>
       <div className={styles.item_wrapper}>
         {items.map((item, index) => (
           <TodoItem
-            key={index}
+            key={`${item.id}-${index}`}
             item={item}
             onClick={markItem}
             deleteTodo={onDeleteItem}
