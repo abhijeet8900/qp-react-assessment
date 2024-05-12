@@ -42,7 +42,7 @@ const TodoList: React.FC<TodoListProps> = ({ items, updateTodos }) => {
             rowHeight={cache.rowHeight}
             rowCount={items.length}
             overscanRowCount={3}
-            containerStyle={{ overflow: "unset" }}
+            containerStyle={{ overflow: "unset", pointerEvents: "all" }}
             isScrolling={true}
             rowRenderer={(props) =>
               renderRow({ ...props, items, onDeleteItem, markItem })
