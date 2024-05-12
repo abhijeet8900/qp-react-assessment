@@ -1,14 +1,24 @@
+.wrapper {
+  @apply flex;
+  @apply flex-row;
+  @apply items-center;
+  backdrop-filter: blur(14px);
+  background-color: rgba(255, 255, 255, 0.2);
+  @apply rounded-lg;
+  @apply cursor-pointer;
+}
+
 .container {
   @apply w-full;
   @apply flex;
+  @apply justify-between;
+  @apply items-center;
   @apply p-3;
-  border-radius: 5px;
-  backdrop-filter: blur(14px);
-  background-color: rgba(255, 255, 255, 0.2);
-  @apply text-center;
-  @apply rounded-lg;
+  @apply pr-1;
 }
 
 .text {
+  @apply w-full;
   @apply pl-8;
+  @apply text-left;
 }

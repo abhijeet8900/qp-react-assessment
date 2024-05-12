@@ -8,12 +8,14 @@ type TodoListProps = {
   items: Item[];
   addItem: (item: Item) => void;
   changeItemStatus: (item: Item) => void;
+  removeItem: (item: Item) => void;
 };
 
 const TodoList: React.FC<TodoListProps> = ({
   items,
   addItem,
   changeItemStatus,
+  removeItem,
 }) => {
   const onAdd = (text: string) => {
     const id = Math.random();
@@ -22,11 +24,19 @@ const TodoList: React.FC<TodoListProps> = ({
   const markItem = (item: Item) => {
     changeItemStatus(item);
   };
+  const onDeleteItem = (item: Item) => {
+    removeItem(item);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.item_wrapper}>
         {items.map((item, index) => (
-          <TodoItem key={index} item={item} onClick={markItem} />
+          <TodoItem
+            key={index}
+            item={item}
+            onClick={markItem}
+            deleteTodo={onDeleteItem}
+          />
         ))}
       </div>
       <AddTodo onAdd={onAdd} />

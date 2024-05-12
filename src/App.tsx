@@ -34,11 +34,17 @@ function App() {
     });
     setTodos(updatedItems);
   };
+
+  const deleteItem = (item: Item) => {
+    const updatedItems = todos.filter((todoItem) => todoItem.id !== item.id);
+    setTodos(updatedItems);
+  };
   return (
     <div className="App bg-gray-100 h-screen w-screen">
       <TodoList
         items={todos}
         addItem={addNewItem}
+        removeItem={deleteItem}
         changeItemStatus={updateItemStatus}
       />
     </div>
