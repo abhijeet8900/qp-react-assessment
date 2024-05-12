@@ -1,0 +1,18 @@
+.container {
+  @apply w-full;
+  @apply h-full;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply gap-4;
+}
+
+.icon {
+  @apply h-12;
+  @apply w-12;
+}
+
+.header {
+  @apply text-5xl;
+  @apply font-bold;
+}
