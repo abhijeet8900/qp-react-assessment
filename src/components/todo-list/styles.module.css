@@ -1,6 +1,5 @@
 .container {
-  @apply pt-20;
-  height: 75vh;
+  height: 70vh;
 }
 
 .item_wrapper {

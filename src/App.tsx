@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import TodoList from "./components/todo-list";
 import { Item } from "./types/item";
 import AddTodo from "./components/add-todo";
+import Header from "./components/header";
 
 function App() {
   const [todos, setTodos] = useState<Item[]>([]);
@@ -46,6 +47,7 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
+        <Header />
         <TodoList
           items={todos}
           removeItem={deleteItem}

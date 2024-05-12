@@ -9,6 +9,7 @@
 .container {
   @apply max-w-7xl;
   @apply mx-auto;
+  @apply pt-8;
   @apply flex;
   @apply flex-col;
   @apply gap-y-10;
