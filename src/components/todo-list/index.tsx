@@ -2,7 +2,7 @@ import React from "react";
 import TodoItem from "../todo-item";
 import AddTodo from "../add-todo";
 import { Item } from "../../types/item";
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 type TodoListProps = {
   items: Item[];
@@ -24,9 +24,11 @@ const TodoList: React.FC<TodoListProps> = ({
   };
   return (
     <div className={styles.container}>
-      {items.map((item, index) => (
-        <TodoItem key={index} item={item} onClick={markItem} />
-      ))}
+      <div className={styles.item_wrapper}>
+        {items.map((item, index) => (
+          <TodoItem key={index} item={item} onClick={markItem} />
+        ))}
+      </div>
       <AddTodo onAdd={onAdd} />
     </div>
   );
