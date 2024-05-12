@@ -2,8 +2,7 @@
   @apply h-screen;
   @apply w-screen;
   text-align: center;
-  background-color: #fbab7e;
-  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
 }
 
 .container {
