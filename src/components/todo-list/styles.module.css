@@ -1,11 +1,9 @@
 .container {
-  @apply mx-auto;
-  @apply max-w-7xl;
   @apply pt-20;
+  height: 75vh;
 }
 
 .item_wrapper {
-  max-height: 75vh;
   @apply mb-5;
   @apply w-full;
   @apply h-full;

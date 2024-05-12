@@ -1,26 +1,19 @@
 import React from "react";
 import TodoItem from "../todo-item";
-import AddTodo from "../add-todo";
 import { Item } from "../../types/item";
 import styles from "./styles.module.css";
 
 type TodoListProps = {
   items: Item[];
-  addItem: (item: Item) => void;
   changeItemStatus: (item: Item) => void;
   removeItem: (item: Item) => void;
 };
 
 const TodoList: React.FC<TodoListProps> = ({
   items,
-  addItem,
   changeItemStatus,
   removeItem,
 }) => {
-  const onAdd = (text: string) => {
-    const id = Math.random();
-    addItem({ id, text: text, checked: false });
-  };
   const markItem = (item: Item) => {
     changeItemStatus(item);
   };
@@ -39,7 +32,6 @@ const TodoList: React.FC<TodoListProps> = ({
           />
         ))}
       </div>
-      <AddTodo onAdd={onAdd} />
     </div>
   );
 };

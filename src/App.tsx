@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import TodoList from "./components/todo-list";
 import { Item } from "./types/item";
+import AddTodo from "./components/add-todo";
 
 function App() {
   const [todos, setTodos] = useState<Item[]>([]);
@@ -20,8 +21,10 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const addNewItem = (item: Item) => {
-    const updateItems = [item, ...todos];
+  const addNewItem = (text: string) => {
+    const id = Math.random();
+    const newTodo = { id, text: text, checked: false };
+    const updateItems = [newTodo, ...todos];
     setTodos(updateItems);
   };
 
@@ -39,14 +42,17 @@ function App() {
     const updatedItems = todos.filter((todoItem) => todoItem.id !== item.id);
     setTodos(updatedItems);
   };
+
   return (
-    <div className="App bg-gray-100 h-screen w-screen">
-      <TodoList
-        items={todos}
-        addItem={addNewItem}
-        removeItem={deleteItem}
-        changeItemStatus={updateItemStatus}
-      />
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <TodoList
+          items={todos}
+          removeItem={deleteItem}
+          changeItemStatus={updateItemStatus}
+        />
+        <AddTodo onAdd={addNewItem} />
+      </div>
     </div>
   );
 }
