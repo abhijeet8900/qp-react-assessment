@@ -1,0 +1,42 @@
+.round {
+  @apply relative;
+}
+
+.round label {
+  @apply bg-white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  @apply cursor-pointer;
+  @apply h-7;
+  @apply w-7;
+  @apply left-0;
+  @apply top-0;
+  @apply absolute;
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  @apply border-t-0;
+  @apply border-r-0;
+  content: "";
+  @apply h-[6px];
+  @apply left-[7px];
+  @apply opacity-0;
+  @apply absolute;
+  @apply top-2;
+  @apply w-3;
+  transform: rotate(-45deg);
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  @apply bg-[#66bb6a];
+  @apply border-[#66bb6a];
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  @apply opacity-100;
+}
