@@ -2,6 +2,13 @@ import React from "react";
 import TodoItem from "../todo-item";
 import { Item } from "../../types/item";
 import styles from "./styles.module.css";
+import {
+  List,
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache,
+  ListRowProps,
+} from "react-virtualized";
 
 type TodoListProps = {
   items: Item[];
@@ -25,17 +32,58 @@ const TodoList: React.FC<TodoListProps> = ({ items, updateTodos }) => {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.item_wrapper}>
-        {items.map((item, index) => (
-          <TodoItem
-            key={`${item.id}-${index}`}
-            item={item}
-            onClick={markItem}
-            deleteTodo={onDeleteItem}
+      <AutoSizer>
+        {({ width, height }) => (
+          <List
+            className={styles.item_wrapper}
+            width={width}
+            height={height}
+            deferredMeasurementCache={cache}
+            rowHeight={cache.rowHeight}
+            rowCount={items.length}
+            overscanRowCount={3}
+            containerStyle={{ overflow: "unset" }}
+            isScrolling={true}
+            rowRenderer={(props) =>
+              renderRow({ ...props, items, onDeleteItem, markItem })
+            }
           />
-        ))}
-      </div>
+        )}
+      </AutoSizer>
     </div>
+  );
+};
+
+const cache: CellMeasurerCache = new CellMeasurerCache({
+  fixedWidth: true,
+  defaultHeight: 100,
+});
+
+const renderRow: React.FC<
+  ListRowProps & {
+    items: Item[];
+    markItem: (item: Item) => void;
+    onDeleteItem: (item: Item) => void;
+  }
+> = ({ key, style, index, items, onDeleteItem, markItem, parent }) => {
+  const item: Item = items[index];
+  return (
+    <CellMeasurer
+      key={key}
+      cache={cache}
+      parent={parent}
+      columnIndex={0}
+      rowIndex={index}
+    >
+      <div style={{ ...style, minHeight: 61 }}>
+        <TodoItem
+          key={key}
+          item={item}
+          onClick={markItem}
+          deleteTodo={onDeleteItem}
+        />
+      </div>
+    </CellMeasurer>
   );
 };
 
