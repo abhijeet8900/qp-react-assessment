@@ -1,0 +1,13 @@
+.container {
+  @apply p-3;
+  @apply rounded-r-lg;
+}
+
+.container:hover {
+  @apply bg-red-500;
+}
+
+.icon {
+  @apply h-6;
+  @apply w-6;
+}
